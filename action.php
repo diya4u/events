@@ -11,7 +11,7 @@ $password = "123456";
 $dbname = "rexx";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+//getting json data
 $jsondata = file_get_contents('events.json');
 $data = json_decode($jsondata, true);
 
@@ -23,7 +23,7 @@ $event_id = $row['event_id'];
 $event_name = $row['event_name'];
 $participation_fee = $row['participation_fee']; 
 $event_date = $row['event_date']; 
-
+//saving json data
 $sql = "INSERT INTO events(participation_id, employee_name, employee_mail, event_id, event_name, participation_fee, event_date) VALUES('$participation_id', '$employee_name', '$employee_mail', '$event_id', '$event_name,', '$participation_fee', '$event_date')"; 
 $conn->query($sql);
 }
@@ -97,6 +97,7 @@ $selectOption3 = $_POST['event_date'];
 $qry="";
 if($selectOption1!='' || $selectOption2!='' || $selectOption3!='')
 {
+    //seeting up dynamic query for filters.
     $qry=" WHERE ";
     if($selectOption1!='')
     {
